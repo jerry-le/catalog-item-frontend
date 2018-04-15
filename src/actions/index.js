@@ -1,10 +1,12 @@
 import axios from 'axios';
 
 export const READ_CATALOGS = 'READ_CATALOGS';
+export const CREATE_CATALOG = 'CREATE_CATALOG';
 export const READ_ITEMS = 'READ_ITEMS';
 
 const ROOT_URL = `http://localhost:5000/api`;
 const CATALOGS_URL = `${ROOT_URL}/catalogs`;
+const CATALOG_URL = `${ROOT_URL}/catalog`;
 const ITEMS_URL = `${ROOT_URL}/items`;
 
 const config = {
@@ -25,6 +27,16 @@ export function readItems() {
 
     return {
         type: READ_ITEMS,
+        payload: request
+    }
+}
+
+export function createCatalog(values, callback){
+    const request = axios.post(`${CATALOG_URL}`, values)
+        .then(() => callback());
+
+    return {
+        type: CREATE_CATALOG,
         payload: request
     }
 }
