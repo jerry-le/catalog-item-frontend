@@ -20,10 +20,10 @@ class CatalogSearchBar extends Component {
                     value={this.state.term}
                     onChange={this.onInputChange.bind(this)}
                 />
-                <span className="input-group-btn">
-                    <button type="submit"
-                            className="btn btn-secondary">Search</button>
-                </span>
+                {/*<span className="input-group-btn">*/}
+                    {/*<button type="submit"*/}
+                            {/*className="btn btn-default">Search</button>*/}
+                {/*</span>*/}
             </form>
         )
     }
