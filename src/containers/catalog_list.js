@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {readCatalogs} from "../actions";
 
 class CatalogList extends Component {
+    componentDidMount(){
+        this.props.readCatalogs();
+    }
+
     renderCatalog(catalogData) {
         const name = catalogData.name;
         const itemsCount = catalogData.itemsCount;
@@ -31,8 +36,8 @@ class CatalogList extends Component {
     }
 }
 
-function mapStateToProps({catalogs}) {
-    return {catalogs};
+function mapStateToProps(state) {
+    return {catalogs: state.catalogs};
 }
 
-export default connect(mapStateToProps)(CatalogList);
+export default connect(mapStateToProps, {readCatalogs})(CatalogList);

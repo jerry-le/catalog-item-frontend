@@ -1,10 +1,12 @@
-import fake_catalogs from '../mock/index';
+import {READ_CATALOGS} from "../actions";
 
 export default function(state =[], action) {
     switch (action.type) {
+        case READ_CATALOGS:
+            state = action.payload.data['catalogs'];
+            break;
         default:
-            console.log("Reducers")
+            state = [];
     }
-    state = fake_catalogs();
     return state;
 }
