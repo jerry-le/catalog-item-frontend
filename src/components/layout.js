@@ -19,7 +19,7 @@ export default function () {
                         <li><Link to='/catalog/new'><span
                             className="glyphicon glyphicon-pencil"></span> New Catalog</Link>
                         </li>
-                        <li><Link to='/catalog/new'><span
+                        <li><Link to='/item/new'><span
                             className="glyphicon glyphicon-pencil"></span> New Item</Link>
                         </li>
                         <li><Link to='/catalog/new'><span

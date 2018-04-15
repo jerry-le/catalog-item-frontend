@@ -3,11 +3,12 @@ import {Link} from 'react-router-dom';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 import {createCatalog} from '../actions/index';
+import {SubmissionError} from "redux-form";
 
 class CatalogNew extends Component {
     renderField(field) { // field is object contain all handlers of Field component
         const {meta: {touched, error}} = field;
-        const className = `form-group ${touched && error ? 'has-danger': ''}`;
+        const className = `form-group ${touched && error ? 'has-danger' : ''}`;
 
         return (
             <div className={className}>
@@ -27,13 +28,17 @@ class CatalogNew extends Component {
     }
 
     onSubmit(values) {
-        this.props.createCatalog(values, () => {
-            this.props.history.push('/');
-        });
+        return this.props.createCatalog(values,
+            () => {
+                this.props.history.push('/');
+            },
+            (reason) => {
+                throw new SubmissionError({_error: reason.response.data.message})
+            });
     }
 
     render() {
-        const {handleSubmit} = this.props;
+        const {error, handleSubmit} = this.props;
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                 {/* Field is an abstract component of ReduxForm. It cannot do anything without
@@ -50,6 +55,8 @@ class CatalogNew extends Component {
                     name="description"
                     component={this.renderField}
                 />
+
+                {error && <strong>{error}</strong>}
 
                 <button type="submit" className="btn btn-primary">Submit
                 </button>

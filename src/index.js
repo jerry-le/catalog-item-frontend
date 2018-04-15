@@ -8,6 +8,7 @@ import {createStore, applyMiddleware} from 'redux';
 import App from './components/app';
 import LayOut from './components/layout';
 import CatalogNew from './components/catalog_new'
+import ItemNew from './components/item_new';
 
 import reducers from './reducers';
 
@@ -20,6 +21,7 @@ ReactDOM.render(
                 <LayOut/>
                 <Switch>
                     <Route path='/catalog/new' component={CatalogNew}/>
+                    <Route path='/item/new' component={ItemNew}/>
                     <Route path='/' component={App}/>
                 </Switch>
             </div>

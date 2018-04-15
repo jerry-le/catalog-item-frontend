@@ -31,9 +31,13 @@ export function readItems() {
     }
 }
 
-export function createCatalog(values, callback){
+export function createCatalog(values, resolve, reject){
     const request = axios.post(`${CATALOG_URL}`, values)
-        .then(() => callback());
+        .then(() => resolve())
+        .catch((reason) => {
+            console.log(reason);
+            reject(reason)
+        });
 
     return {
         type: CREATE_CATALOG,
