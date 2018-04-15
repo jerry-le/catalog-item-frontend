@@ -9,3 +9,7 @@
 .list-group-item:hover {
     background-color: #f7f7f7;
 }
+
+form a {
+    margin-left: 5px;
+}
