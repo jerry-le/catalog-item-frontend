@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 export default function () {
     return (
@@ -11,15 +12,21 @@ export default function () {
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                     </button>
-                    <a className="navbar-brand">Reddupp</a>
+                    <Link to='/' className="navbar-brand">Reddupp</Link>
                 </div>
                 <div className="collapse navbar-collapse" id="myNavbar">
                     <ul className="nav navbar-nav navbar-right">
-                        <li><a><span
-                            className="glyphicon glyphicon-user"></span> Sign Up</a>
+                        <li><Link to='/catalog/new'><span
+                            className="glyphicon glyphicon-pencil"></span> New Catalog</Link>
                         </li>
-                        <li><a><span
-                            className="glyphicon glyphicon-log-in"></span> Login</a>
+                        <li><Link to='/catalog/new'><span
+                            className="glyphicon glyphicon-pencil"></span> New Item</Link>
+                        </li>
+                        <li><Link to='/catalog/new'><span
+                            className="glyphicon glyphicon-user"></span> Sign Up</Link>
+                        </li>
+                        <li><Link to='/'><span
+                            className="glyphicon glyphicon-log-in"></span> Login</Link>
                         </li>
                     </ul>
                 </div>

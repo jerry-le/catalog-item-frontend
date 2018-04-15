@@ -4,7 +4,6 @@ export const READ_CATALOGS = 'READ_CATALOGS';
 export const READ_ITEMS = 'READ_ITEMS';
 
 const ROOT_URL = `http://localhost:5000/api`;
-const CATALOG_URL = `${ROOT_URL}/catalog`;
 const CATALOGS_URL = `${ROOT_URL}/catalogs`;
 const ITEMS_URL = `${ROOT_URL}/items`;
 

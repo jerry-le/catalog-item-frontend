@@ -11,7 +11,7 @@ class ItemList extends Component {
         return (
             <li key={item.id} className="list-group-item media">
                 <div className="media-left">
-                    <img className="media-object" src={item.img}/>
+                    <img className="media-object" src={item.img} alt={item.description}/>
                 </div>
 
                 <div className="media-body">
