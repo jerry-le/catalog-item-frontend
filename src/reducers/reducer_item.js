@@ -1,10 +1,10 @@
-import {mockItems} from '../mock/index';
+import {READ_ITEMS} from "../actions";
 
 export default (state = [], action) => {
     switch (action.type) {
+        case READ_ITEMS:
+            return action.payload.data['items'];
         default:
-            state = [];
+            return state;
     }
-    state = mockItems();
-    return state;
 }

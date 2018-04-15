@@ -1,7 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {readItems} from "../actions";
 
 class ItemList extends Component {
+    componentDidMount() {
+        this.props.readItems();
+    }
 
     renderItem(item) {
         return (
@@ -16,7 +20,7 @@ class ItemList extends Component {
                         href={item.link}
                         target="_blank"
                     >{item.description}</a>
-                    <div>{item.created}</div>
+                    <div>Posted in <b>{item.created}</b> in <b>{item.catalog}</b></div>
                 </div>
             </li>
         )
@@ -37,4 +41,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps)(ItemList);
+export default connect(mapStateToProps, {readItems})(ItemList);

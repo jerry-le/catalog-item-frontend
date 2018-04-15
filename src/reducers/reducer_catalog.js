@@ -3,10 +3,8 @@ import {READ_CATALOGS} from "../actions";
 export default (state =[], action) => {
     switch (action.type) {
         case READ_CATALOGS:
-            state = action.payload.data['catalogs'];
-            break;
+            return action.payload.data['catalogs'];
         default:
-            state = [];
+            return state;
     }
-    return state;
 }
