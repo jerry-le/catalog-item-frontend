@@ -8,7 +8,7 @@ import {SubmissionError} from "redux-form";
 class CatalogNew extends Component {
     renderField(field) { // field is object contain all handlers of Field component
         const {meta: {touched, error}} = field;
-        const className = `form-group ${touched && error ? 'has-danger' : ''}`;
+        const className = `form-group ${touched && error ? 'has-error' : ''}`;
 
         return (
             <div className={className}>

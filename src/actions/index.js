@@ -3,11 +3,13 @@ import axios from 'axios';
 export const READ_CATALOGS = 'READ_CATALOGS';
 export const CREATE_CATALOG = 'CREATE_CATALOG';
 export const READ_ITEMS = 'READ_ITEMS';
+export const CREATE_ITEM = 'CREATE_ITEM';
 
 const ROOT_URL = `http://localhost:5000/api`;
 const CATALOGS_URL = `${ROOT_URL}/catalogs`;
 const CATALOG_URL = `${ROOT_URL}/catalog`;
 const ITEMS_URL = `${ROOT_URL}/items`;
+const ITEM_URL = `${ROOT_URL}/item`;
 
 const config = {
     headers: {'Access-Control-Allow-Origin': '*'}
@@ -35,7 +37,6 @@ export function createCatalog(values, resolve, reject){
     const request = axios.post(`${CATALOG_URL}`, values)
         .then(() => resolve())
         .catch((reason) => {
-            console.log(reason);
             reject(reason)
         });
 
@@ -45,3 +46,14 @@ export function createCatalog(values, resolve, reject){
     }
 }
 
+export function createItem(values, resolve, reject){
+    const request = axios.post(`${ITEM_URL}`, values)
+        .then(() => resolve())
+        .catch((reason => {
+            reject(reason);
+        }));
+    return {
+        type: CREATE_ITEM,
+        payload: request
+    }
+}
