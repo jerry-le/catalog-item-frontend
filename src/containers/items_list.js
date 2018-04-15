@@ -1,13 +1,30 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 class ItemList extends Component {
+
+    renderItem(item) {
+        return (
+            <li className="list-group-item">
+                <div>{item.link}</div>
+                <div>{item.description}</div>
+            </li>
+        )
+    }
+
     render() {
         return (
-            <div>
+            <ul className="list-group">
                 Item Lists
-            </div>
+                {this.props.items.map(this.renderItem)}
+            </ul>
         )
     }
 }
 
-export default ItemList;
+function mapStateToProps(state) {
+    return {items: state.items};
+}
+
+
+export default connect(mapStateToProps)(ItemList);
