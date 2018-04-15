@@ -20,14 +20,16 @@ export function mockItems() {
         {
             id: 1,
             link: 'https://github.com/JackStouffer/Flask-Foundation',
+            img: 'https://img.youtube.com/vi/bajdjs/2.jpg',
             description: "This is a description",
-            created: 10919292929
+            created: "2018-4-15"
         },
         {
             id: 2,
             link: 'https://github.com/JackStouffer/Flask-Foundation',
+            img: 'https://img.youtube.com/vi/bajdjs/2.jpg',
             description: "This is a description",
-            created: 10919292929
+            created: "2018-4-15"
         }
     ]
 }
