@@ -27,17 +27,20 @@ class ItemList extends Component {
     }
 
     render() {
+        const activeCatalog = this.props.activeCatalog;
+        const activeItems = activeCatalog ? activeCatalog.items : this.props.items;
+        const header = activeCatalog ? `Items in ${activeCatalog.name}` : "Newest Items";
         return (
             <ul className="col-xs-12 list-group">
-                Item Lists
-                {this.props.items.map(this.renderItem)}
+                {header}
+                {activeItems.map(this.renderItem)}
             </ul>
         )
     }
 }
 
 function mapStateToProps(state) {
-    return {items: state.items};
+    return {items: state.items, activeCatalog: state.activeCatalog};
 }
 
 

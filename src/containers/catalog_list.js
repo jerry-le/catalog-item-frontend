@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {readCatalogs} from "../actions";
+import {selectCategory} from "../actions";
 
 class CatalogList extends Component {
     componentDidMount(){
@@ -8,15 +9,20 @@ class CatalogList extends Component {
     }
 
     renderCatalog(catalogData) {
-        const name = catalogData.name;
-        const itemsCount = catalogData.itemsCount;
+        return this.props.catalogs.map((catalog) => {
+            const name = catalog.name;
+            const itemsCount = catalog.itemsCount;
 
-        return (
-            <tr key={name}>
-                <td>{name}</td>
-                <td>{itemsCount}</td>
-            </tr>
-        )
+            return (
+                <tr
+                    key={name}
+                    onClick={() => this.props.selectCategory(catalog)}
+                >
+                    <td>{name}</td>
+                    <td>{itemsCount}</td>
+                </tr>
+            )
+        });
     }
 
     render() {
@@ -29,7 +35,7 @@ class CatalogList extends Component {
                 </tr>
                 </thead>
                 <tbody>
-                {this.props.catalogs.map(this.renderCatalog)}
+                    {this.renderCatalog()}
                 </tbody>
             </table>
         )
@@ -40,4 +46,4 @@ function mapStateToProps(state) {
     return {catalogs: state.catalogs};
 }
 
-export default connect(mapStateToProps, {readCatalogs})(CatalogList);
+export default connect(mapStateToProps, {readCatalogs, selectCategory})(CatalogList);
