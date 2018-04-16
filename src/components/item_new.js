@@ -103,6 +103,10 @@ function validate(values) {
     }
     if (!values.description) {
         errors.description = "Enter a description";
+    } else {
+        if (values.description.length > 80) {
+            errors.description = "Description must be less than 80 characters";
+        }
     }
     if (!values.catalog_id) {
         errors.catalog_id = "Select a catalog";

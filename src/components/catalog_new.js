@@ -75,6 +75,10 @@ function validate(values) {
     // validate inputs from 'values'
     if (!values.name) {
         errors.name = "Enter a title";
+    } else {
+        if (values.name.length >  20) {
+            errors.name = "Catalog name must be less than 20 characters";
+        }
     }
 
     if (!values.description) {

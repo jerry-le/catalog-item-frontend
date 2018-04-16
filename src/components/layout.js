@@ -22,10 +22,7 @@ export default function () {
                         <li><Link to='/item/new'><span
                             className="glyphicon glyphicon-pencil"></span> New Item</Link>
                         </li>
-                        <li><Link to='/catalog/new'><span
-                            className="glyphicon glyphicon-user"></span> Sign Up</Link>
-                        </li>
-                        <li><Link to='/'><span
+                        <li><Link to='/login'><span
                             className="glyphicon glyphicon-log-in"></span> Login</Link>
                         </li>
                     </ul>
