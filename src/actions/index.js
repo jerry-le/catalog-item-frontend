@@ -5,12 +5,14 @@ export const CREATE_CATALOG = 'CREATE_CATALOG';
 export const SELECT_CATALOG = 'SELECT_CATALOG';
 export const READ_ITEMS = 'READ_ITEMS';
 export const CREATE_ITEM = 'CREATE_ITEM';
+export const LOGIN = 'LOGIN';
 
 const ROOT_URL = `http://localhost:5000/api`;
 const CATALOGS_URL = `${ROOT_URL}/catalogs`;
 const CATALOG_URL = `${ROOT_URL}/catalog`;
 const ITEMS_URL = `${ROOT_URL}/items`;
 const ITEM_URL = `${ROOT_URL}/item`;
+const LOGIN_URL = `${ROOT_URL}/login`;
 
 const config = {
     headers: {'Access-Control-Allow-Origin': '*'}
@@ -63,5 +65,20 @@ export function selectCategory(category){
     return {
         type: SELECT_CATALOG,
         payload: category
+    }
+}
+
+export function requestLogin(gapiRespone, resolve, reject) {
+    const request = axios.post(`${LOGIN_URL}`, gapiRespone)
+        .then((data) => {
+            resolve(data)
+        })
+        .catch((reason) => {
+            reject(reason);
+        });
+
+    return {
+        type: LOGIN,
+        payload: request
     }
 }
