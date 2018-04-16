@@ -62,33 +62,35 @@ class ItemNew extends Component {
     render() {
         const {handleSubmit} = this.props;
         return (
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                <Field
-                    label="Youtube Link"
-                    name="link"
-                    type="text"
-                    component={this.renderField}
-                />
+            <div>
+                <h3>Create new item</h3>
+                <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                    <Field
+                        label="Youtube Link"
+                        name="link"
+                        type="text"
+                        component={this.renderField}
+                    />
 
-                <Field
-                    label="Description"
-                    name="description"
-                    type="text"
-                    component={this.renderField}
-                />
+                    <Field
+                        label="Description"
+                        name="description"
+                        type="text"
+                        component={this.renderField}
+                    />
 
-                <Field
-                    label="Catalog"
-                    name="catalog_id"
-                    data={this.props.catalogs}
-                    component={this.renderMultiselect}
-                />
+                    <Field
+                        label="Catalog"
+                        name="catalog_id"
+                        data={this.props.catalogs}
+                        component={this.renderMultiselect}
+                    />
 
-                <button type="submit" className="btn btn-primary">Submit
-                </button>
-                <Link to="/" className="btn btn-danger">Cancel</Link>
-            </form>
-
+                    <button type="submit" className="btn btn-primary">Submit
+                    </button>
+                    <Link to="/" className="btn btn-danger">Cancel</Link>
+                </form>
+            </div>
         )
     }
 }

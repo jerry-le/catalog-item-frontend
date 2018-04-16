@@ -40,28 +40,31 @@ class CatalogNew extends Component {
     render() {
         const {error, handleSubmit} = this.props;
         return (
-            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                {/* Field is an abstract component of ReduxForm. It cannot do anything without
+            <div>
+                <h3>Create new catalog</h3>
+                <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                    {/* Field is an abstract component of ReduxForm. It cannot do anything without
                     without ReduxForm. Field helps us handling events */}
-                <Field
-                    label="Name"
-                    name="name"
-                    component={this.renderField} /* Field need component to tell ReduxForm
+                    <Field
+                        label="Name"
+                        name="name"
+                        component={this.renderField} /* Field need component to tell ReduxForm
                     how to render itself on screen */
-                />
+                    />
 
-                <Field
-                    label="Description"
-                    name="description"
-                    component={this.renderField}
-                />
+                    <Field
+                        label="Description"
+                        name="description"
+                        component={this.renderField}
+                    />
 
-                {error && <strong>{error}</strong>}
+                    {error && <strong>{error}</strong>}
 
-                <button type="submit" className="btn btn-primary">Submit
-                </button>
-                <Link to='/' className="btn btn-danger">Cancel</Link>
-            </form>
+                    <button type="submit" className="btn btn-primary">Submit
+                    </button>
+                    <Link to='/' className="btn btn-danger">Cancel</Link>
+                </form>
+            </div>
         )
     }
 }
