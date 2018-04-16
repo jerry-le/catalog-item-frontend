@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const READ_CATALOGS = 'READ_CATALOGS';
 export const CREATE_CATALOG = 'CREATE_CATALOG';
+export const SELECT_CATALOG = 'SELECT_CATALOG';
 export const READ_ITEMS = 'READ_ITEMS';
 export const CREATE_ITEM = 'CREATE_ITEM';
 
@@ -55,5 +56,12 @@ export function createItem(values, resolve, reject){
     return {
         type: CREATE_ITEM,
         payload: request
+    }
+}
+
+export function selectCategory(category){
+    return {
+        type: SELECT_CATALOG,
+        payload: category
     }
 }
