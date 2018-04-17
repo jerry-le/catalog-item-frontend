@@ -8,7 +8,7 @@ class Login extends Component {
         this.props.requestLogin(response,
             (data) => {
                 // if login success
-                console.log(data);
+                this.props.history.push('/');
             },
             (reason) => {
                 // if login fail

@@ -57,7 +57,7 @@ export function readItem(id) {
     }
 }
 
-export function createCatalog(values, resolve, reject){
+export function createCatalog(values, resolve, reject) {
     const request = axios.post(`${CATALOG_URL}`, values)
         .then(() => resolve())
         .catch((reason) => {
@@ -70,7 +70,7 @@ export function createCatalog(values, resolve, reject){
     }
 }
 
-export function createItem(values, resolve, reject){
+export function createItem(values, resolve, reject) {
     const request = axios.post(`${ITEM_URL}`, values)
         .then(() => resolve())
         .catch((reason => {
@@ -82,24 +82,32 @@ export function createItem(values, resolve, reject){
     }
 }
 
-export function selectCategory(category){
+export function selectCategory(category) {
     return {
         type: SELECT_CATALOG,
         payload: category
     }
 }
 
-export function requestLogin(gapiRespone, resolve, reject) {
-    const request = axios.post(`${LOGIN_URL}`, gapiRespone)
-        .then((data) => {
-            resolve(data)
-        })
-        .catch((reason) => {
-            reject(reason);
-        });
+export async function requestLogin(gapiRespone, resolve, reject) {
+    let data = {};
+    try {
+        const response = await axios.post(`${LOGIN_URL}`, gapiRespone);
+        data = response.data;
+        const access_token = data['access_token'];
+        const user_info = data['user'];
+
+        if (access_token) {
+            localStorage.setItem('access_token', access_token);
+            localStorage.setItem('user_info', user_info);
+        }
+        resolve();
+    } catch (e) {
+        reject();
+    }
 
     return {
         type: LOGIN,
-        payload: request
+        payload: data
     }
 }

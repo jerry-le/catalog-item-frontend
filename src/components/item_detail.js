@@ -126,7 +126,7 @@ function mapStateToProp(state, ownProps) {
     const catalogs = state.catalogs;
     const items = state.items;
     const item = _.find(items, function(item){
-        return item.id == ownProps.match.params.id;
+        return String(item.id) === String(ownProps.match.params.id);
     }) || {};
     return {
         catalogs: catalogs,
