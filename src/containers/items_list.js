@@ -32,7 +32,9 @@ class ItemList extends Component {
         const header = activeCatalog ? `Items in ${activeCatalog.name}` : "Newest Items";
         return (
             <ul className="col-xs-12 list-group">
-                {header}
+                <div className="row">
+                    <h5 className="col-md-6 text-left">{header}</h5>
+                </div>
                 {activeItems.map(this.renderItem)}
             </ul>
         )
