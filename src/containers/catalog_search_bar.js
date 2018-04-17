@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {readCatalogsByName} from "../actions";
+import {connect} from 'react-redux';
 
 class CatalogSearchBar extends Component {
     constructor(props) {
@@ -7,26 +9,28 @@ class CatalogSearchBar extends Component {
         this.state = {term: ''};
     }
 
+    onFormSubmit(event) {
+        event.preventDefault();
+
+        this.props.readCatalogsByName(this.state.term);
+    }
+
     onInputChange(event) {
         this.setState({term: event.target.value});
     }
 
     render() {
         return (
-            <form onSubmit={this.onFormSubmit} className="input-group">
+            <form onSubmit={this.onFormSubmit.bind(this)} className="input-group">
                 <input
                     placeholder="Find catalog name"
                     className="form-control"
                     value={this.state.term}
                     onChange={this.onInputChange.bind(this)}
                 />
-                {/*<span className="input-group-btn">*/}
-                    {/*<button type="submit"*/}
-                            {/*className="btn btn-default">Search</button>*/}
-                {/*</span>*/}
             </form>
         )
     }
 }
 
-export default CatalogSearchBar;
+export default connect(null, {readCatalogsByName})(CatalogSearchBar);
