@@ -5,6 +5,7 @@ export const READ_CATALOGS_BY_NAME = 'READ_CATALOGS_BY_NAME';
 export const CREATE_CATALOG = 'CREATE_CATALOG';
 export const SELECT_CATALOG = 'SELECT_CATALOG';
 export const READ_ITEMS = 'READ_ITEMS';
+export const READ_ITEM = 'READ_ITEM';
 export const CREATE_ITEM = 'CREATE_ITEM';
 export const LOGIN = 'LOGIN';
 
@@ -43,6 +44,15 @@ export function readItems() {
 
     return {
         type: READ_ITEMS,
+        payload: request
+    }
+}
+
+export function readItem(id) {
+    const request = axios.get(`${ITEM_URL}/${id}`, config);
+
+    return {
+        type: READ_ITEM,
         payload: request
     }
 }

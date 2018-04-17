@@ -14,3 +14,11 @@ form a {
     margin-left: 5px;
 }
 
+.edit-item{
+    color: #3588d0;
+    user-select: none;
+}
+
+.edit-item:hover{
+    color: red;
+}
