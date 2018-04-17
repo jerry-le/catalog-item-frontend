@@ -23,7 +23,7 @@ class Login extends Component {
 
                 <GoogleLogin
                     buttonText="Login with Google"
-                    scope="openid email"
+                    scope="email"
                     clientId="388668170175-l9sn7r2t54apln8d000q68eeqbrgopfg.apps.googleusercontent.com"
                     redirectUri="postmessage"
                     prompt="consent"

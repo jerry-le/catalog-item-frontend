@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {readItems} from "../actions";
+import {Link} from 'react-router-dom';
 
 class ItemList extends Component {
     componentDidMount() {
@@ -11,7 +12,8 @@ class ItemList extends Component {
         return (
             <li key={item.id} className="list-group-item media">
                 <div className="media-left">
-                    <img className="media-object" src={item.img} alt={item.description}/>
+                    <img className="media-object" src={item.img}
+                         alt={item.description}/>
                 </div>
 
                 <div className="media-body">
@@ -20,7 +22,14 @@ class ItemList extends Component {
                         href={item.link}
                         target="_blank"
                     >{item.description}</a>
-                    <div>Posted in <b>{item.created}</b> in <b>{item.catalog}</b></div>
+                    <div>Posted
+                        in <b>{item.created}</b> in <b>{item.catalog}</b></div>
+                    <div>
+                        <span className="edit-item">
+                            <Link to={`item/${item.id}`}>Edit</Link>
+                        </span>
+                        <span className="edit-item"> Delete</span>
+                    </div>
                 </div>
             </li>
         )
