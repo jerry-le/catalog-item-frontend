@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const READ_CATALOGS = 'READ_CATALOGS';
+export const READ_CATALOGS_BY_NAME = 'READ_CATALOGS_BY_NAME';
 export const CREATE_CATALOG = 'CREATE_CATALOG';
 export const SELECT_CATALOG = 'SELECT_CATALOG';
 export const READ_ITEMS = 'READ_ITEMS';
@@ -25,6 +26,16 @@ export function readCatalogs() {
         type: READ_CATALOGS,
         payload: request
     }
+}
+
+export function readCatalogsByName(name) {
+    const request = axios.get(`${CATALOGS_URL}?name=${name}`, config);
+
+    return {
+        type: READ_CATALOGS_BY_NAME,
+        payload: request
+    }
+
 }
 
 export function readItems() {
