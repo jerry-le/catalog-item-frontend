@@ -22,3 +22,7 @@ form a {
 .edit-item:hover{
     color: red;
 }
+
+li > a {
+    user-select: none;
+}
