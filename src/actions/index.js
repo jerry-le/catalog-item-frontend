@@ -19,7 +19,10 @@ const ITEM_URL = `${ROOT_URL}/item`;
 const LOGIN_URL = `${ROOT_URL}/login`;
 
 const config = {
-    headers: {'Access-Control-Allow-Origin': '*'}
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': `JWT ${localStorage.getItem('access_token')}`
+    }
 };
 
 export function readCatalogs() {
@@ -60,7 +63,7 @@ export function readItem(id) {
 }
 
 export function createCatalog(values, resolve, reject) {
-    const request = axios.post(`${CATALOG_URL}`, values)
+    const request = axios.post(`${CATALOG_URL}`, values, config)
         .then(() => resolve())
         .catch((reason) => {
             reject(reason)
@@ -73,7 +76,7 @@ export function createCatalog(values, resolve, reject) {
 }
 
 export function createItem(values, resolve, reject) {
-    const request = axios.post(`${ITEM_URL}`, values)
+    const request = axios.post(`${ITEM_URL}`, values, config)
         .then(() => resolve())
         .catch((reason => {
             reject(reason);
@@ -116,20 +119,17 @@ export async function requestLogin(gapiRespone, resolve, reject) {
 
 export async function checkAccessToken() {
     const accessToken = localStorage.getItem('access_token');
-    const headers = {
-        'Authorization': `JWT ${accessToken}`
-    };
     let user_name = '';
     try {
-        const request = await axios.get(LOGIN_URL, {headers: headers});
+        await axios.get(LOGIN_URL, config);
         user_name = localStorage.getItem('user_name');
     } catch (e) {
     }
     return {
         type: VERIFY_ACCESS_TOKEN,
         payload: {
-            user_name: user_name,
-            user_img: localStorage.getItem('user_img')
+            name: user_name,
+            image_url: localStorage.getItem('user_img')
         }
     }
 }

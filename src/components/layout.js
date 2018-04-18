@@ -1,13 +1,17 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {checkAccessToken} from "../actions";
+import {checkAccessToken, logOut} from "../actions";
 
 class LayOut extends Component {
-    componentDidMount(){
+    componentDidMount() {
         if (!this.props.user_name) {
             this.props.checkAccessToken();
         }
+    }
+
+    onClickLogOut() {
+        this.props.logOut();
     }
 
     renderRightInfo() {
@@ -41,10 +45,10 @@ class LayOut extends Component {
                         </Link>
                     </li>
                     <li>
-                        <Link to='/login'>
-                            <span className="glyphicon glyphicon-log-out"></span>
+                        <a onClick={this.onClickLogOut.bind(this)}>
+                            <span className="glyphicon glyphicon-log-out"> </span>
                             &nbsp;Logout ({user_name})
-                        </Link>
+                        </a>
                     </li>
                 </ul>
             )
@@ -65,7 +69,7 @@ class LayOut extends Component {
                         <Link to='/' className="navbar-brand">Reddupp</Link>
                     </div>
                     <div className="collapse navbar-collapse" id="myNavbar">
-                        {this.renderRightInfo()}
+                        {this.renderRightInfo.apply(this, null)}
                     </div>
                 </div>
             </nav>
@@ -77,8 +81,8 @@ function mapStateToProps(state) {
     let user_name = '';
     let user_img = '';
     try {
-        user_name = state.user.user_name;
-        user_img = state.user.user_img;
+        user_name = state.user.name;
+        user_img = state.user.image_url;
     } catch (e) {
     }
 
@@ -88,5 +92,5 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {checkAccessToken})(LayOut);
+export default connect(mapStateToProps, {checkAccessToken, logOut})(LayOut);
 
