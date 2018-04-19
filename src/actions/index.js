@@ -118,13 +118,11 @@ export async function requestLogin(gapiRespone, resolve, reject) {
 }
 
 export async function checkAccessToken() {
-    const accessToken = localStorage.getItem('access_token');
     let user_name = '';
     try {
         await axios.get(LOGIN_URL, config);
         user_name = localStorage.getItem('user_name');
-    } catch (e) {
-    }
+    } catch (e) {}
     return {
         type: VERIFY_ACCESS_TOKEN,
         payload: {

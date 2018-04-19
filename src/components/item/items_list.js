@@ -22,8 +22,7 @@ class ItemList extends Component {
                         href={item.link}
                         target="_blank"
                     >{item.description}</a>
-                    <div>Posted
-                        in <b>{item.created}</b> in <b>{item.catalog}</b></div>
+                    <div>Posted in <b>{item.created}</b> in <b>{item.catalog}</b></div>
                     <div>
                         <span className="edit-item">
                             <Link to={`item/${item.id}`}>Edit</Link>
