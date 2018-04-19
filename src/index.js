@@ -7,9 +7,9 @@ import {createStore, applyMiddleware} from 'redux';
 
 import App from './components/app';
 import LayOut from './components/layout';
-import CatalogNew from './components/catalog_new'
-import ItemNew from './components/item_new';
-import ItemDetail from "./components/item_detail";
+import CatalogNew from './components/catalog/catalog_new'
+import ItemNew from './components/item/item_new';
+import ItemDetail from "./components/item/item_detail";
 import Login from './components/login';
 
 import reducers from './reducers';

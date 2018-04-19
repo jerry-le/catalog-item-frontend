@@ -23,7 +23,7 @@ class LayOut extends Component {
                 <ul className="nav navbar-nav navbar-right">
                     <li>
                         <Link to='/login'>
-                            <span className="glyphicon glyphicon-log-in"></span>
+                            <span className="glyphicon glyphicon-log-in"/>
                             &nbsp;Login
                         </Link>
                     </li>
@@ -34,19 +34,20 @@ class LayOut extends Component {
                 <ul className="nav navbar-nav navbar-right">
                     <li>
                         <Link to='/catalog/new'>
-                            <span className="glyphicon glyphicon-pencil"></span>
+                            <span className="glyphicon glyphicon-pencil"/>
                             &nbsp;New Catalog
                         </Link>
                     </li>
                     <li>
                         <Link to='/item/new'>
-                            <span className="glyphicon glyphicon-pencil"></span>
+                            <span className="glyphicon glyphicon-pencil"/>
                             &nbsp;New Item
                         </Link>
                     </li>
                     <li>
                         <a onClick={this.onClickLogOut.bind(this)}>
-                            <span className="glyphicon glyphicon-log-out"> </span>
+                            <img className="avatar" src={user_img}/>
+                            <span className="glyphicon glyphicon-log-out"/>
                             &nbsp;Logout ({user_name})
                         </a>
                     </li>
@@ -62,9 +63,9 @@ class LayOut extends Component {
                     <div className="navbar-header">
                         <button type="button" className="navbar-toggle"
                                 data-toggle="collapse" data-target="#myNavbar">
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
-                            <span className="icon-bar"></span>
+                            <span className="icon-bar"/>
+                            <span className="icon-bar"/>
+                            <span className="icon-bar"/>
                         </button>
                         <Link to='/' className="navbar-brand">Reddupp</Link>
                     </div>

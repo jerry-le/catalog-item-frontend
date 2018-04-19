@@ -1,13 +1,20 @@
+import _ from 'lodash';
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-import {readCatalogs} from "../actions";
-import {createItem} from "../actions";
+import {Field, reduxForm} from 'redux-form';
+import {readCatalogs} from "../../actions/index";
+import {readItem} from "../../actions/index";
 
-class ItemNew extends Component {
+class ItemDetail extends Component {
     componentDidMount(){
-        this.props.readCatalogs();
+        if (!this.props.catalogs.length) {
+            this.props.readCatalogs()
+        }
+        if (!this.props.items.length){
+            const {id} = this.props.match.params;
+            this.props.readItem(id);
+        }
     }
 
     renderField(field) {
@@ -66,17 +73,17 @@ class ItemNew extends Component {
                 <h3>Create new item</h3>
                 <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
                     <Field
-                        label="Youtube Link"
                         name="link"
+                        component={this.renderField.bind(this)}
                         type="text"
-                        component={this.renderField}
+                        label="Youtube Link"
                     />
 
                     <Field
                         label="Description"
                         name="description"
                         type="text"
-                        component={this.renderField}
+                        component={this.renderField.bind(this)}
                     />
 
                     <Field
@@ -115,13 +122,24 @@ function validate(values) {
     return errors;
 }
 
-function mapStateToProp(state) {
-    return {catalogs: state.catalogs}
+function mapStateToProp(state, ownProps) {
+    const catalogs = state.catalogs;
+    const items = state.items;
+    const item = _.find(items, function(item){
+        return String(item.id) === String(ownProps.match.params.id);
+    }) || {};
+    return {
+        catalogs: catalogs,
+        items: items,
+        initialValues: item
+    }
 }
 
 export default reduxForm({
     validate,
-    form: 'ItemNewForm'
+    form: 'ItemDetailForm',
+    enableReinitialize : true
 })(
-    connect(mapStateToProp, {readCatalogs, createItem})(ItemNew)
+    connect(mapStateToProp, {readCatalogs, readItem})(ItemDetail)
 );
+

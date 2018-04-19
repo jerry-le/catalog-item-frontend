@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {readCatalogs} from "../actions";
-import {selectCategory} from "../actions";
+import {readCatalogs} from "../../actions/index";
+import {selectCatalog} from "../../actions/index";
 
 class CatalogList extends Component {
     componentDidMount(){
         this.props.readCatalogs();
     }
 
-    renderCatalog(catalogData) {
+    renderCatalog() {
         return this.props.catalogs.map((catalog) => {
             const name = catalog.name;
             const itemsCount = catalog.itemsCount;
@@ -16,7 +16,7 @@ class CatalogList extends Component {
             return (
                 <tr
                     key={name}
-                    onClick={() => this.props.selectCategory(catalog)}
+                    onClick={() => this.props.selectCatalog(catalog)}
                 >
                     <td>{name}</td>
                     <td>{itemsCount}</td>
@@ -46,4 +46,4 @@ function mapStateToProps(state) {
     return {catalogs: state.catalogs};
 }
 
-export default connect(mapStateToProps, {readCatalogs, selectCategory})(CatalogList);
+export default connect(mapStateToProps, {readCatalogs, selectCatalog})(CatalogList);

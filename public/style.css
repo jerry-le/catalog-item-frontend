@@ -26,3 +26,8 @@ form a {
 li > a {
     user-select: none;
 }
+
+img.avatar {
+    width: 30px;
+    height: 30px;
+}

@@ -1,0 +1,45 @@
+import React, {Component} from 'react';
+import {Link} from "react-router-dom";
+import {connect} from "react-redux";
+import {deleteItem} from "../../actions";
+
+class Item extends Component {
+    constructor(props){
+        super(props);
+    }
+
+    onClickDelete(item) {
+        this.props.deleteItem(item, () => {
+            window.location.reload();
+        });
+    }
+
+    render() {
+        const item = this.props.item;
+        return (
+            <li className="list-group-item media">
+                <div className="media-left">
+                    <img className="media-object" src={item.img}
+                         alt={item.description}/>
+                </div>
+
+                <div className="media-body">
+                    <a
+                        className="media-heading"
+                        href={item.link}
+                        target="_blank"
+                    >{item.description}</a>
+                    <div>Posted in <b>{item.created}</b> in <b>{item.catalog}</b></div>
+                    <div>
+                        <span className="edit-item">
+                            <Link to={`item/${item.id}`}>Edit</Link>
+                        </span>
+                        <span className="edit-item" onClick={() => this.onClickDelete(item)}> Delete</span>
+                    </div>
+                </div>
+            </li>
+        )
+    }
+}
+
+export default connect(null, {deleteItem})(Item);

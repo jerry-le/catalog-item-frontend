@@ -6,6 +6,7 @@ export const CREATE_CATALOG = 'CREATE_CATALOG';
 export const SELECT_CATALOG = 'SELECT_CATALOG';
 export const READ_ITEMS = 'READ_ITEMS';
 export const READ_ITEM = 'READ_ITEM';
+export const DELETE_ITEM = 'DELETE_ITEM';
 export const CREATE_ITEM = 'CREATE_ITEM';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
@@ -87,10 +88,21 @@ export function createItem(values, resolve, reject) {
     }
 }
 
-export function selectCategory(category) {
+export function selectCatalog(catalog) {
     return {
         type: SELECT_CATALOG,
-        payload: category
+        payload: catalog
+    }
+}
+
+export function deleteItem(item, callback) {
+    axios.delete(`${ITEM_URL}/${item.id}`, config)
+        .then(() => callback())
+        .catch(() => callback());
+
+    return {
+        type: DELETE_ITEM,
+        payload: item
     }
 }
 
@@ -118,13 +130,11 @@ export async function requestLogin(gapiRespone, resolve, reject) {
 }
 
 export async function checkAccessToken() {
-    const accessToken = localStorage.getItem('access_token');
     let user_name = '';
     try {
         await axios.get(LOGIN_URL, config);
         user_name = localStorage.getItem('user_name');
-    } catch (e) {
-    }
+    } catch (e) {}
     return {
         type: VERIFY_ACCESS_TOKEN,
         payload: {
