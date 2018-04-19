@@ -1,37 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {readItems} from "../../actions/index";
-import {Link} from 'react-router-dom';
+import {deleteItem} from "../../actions/index";
+import Item from './item';
 
 class ItemList extends Component {
     componentDidMount() {
         this.props.readItems();
-    }
-
-    renderItem(item) {
-        return (
-            <li key={item.id} className="list-group-item media">
-                <div className="media-left">
-                    <img className="media-object" src={item.img}
-                         alt={item.description}/>
-                </div>
-
-                <div className="media-body">
-                    <a
-                        className="media-heading"
-                        href={item.link}
-                        target="_blank"
-                    >{item.description}</a>
-                    <div>Posted in <b>{item.created}</b> in <b>{item.catalog}</b></div>
-                    <div>
-                        <span className="edit-item">
-                            <Link to={`item/${item.id}`}>Edit</Link>
-                        </span>
-                        <span className="edit-item"> Delete</span>
-                    </div>
-                </div>
-            </li>
-        )
     }
 
     render() {
@@ -43,7 +18,9 @@ class ItemList extends Component {
                 <div className="row">
                     <h5 className="col-md-6 text-left">{header}</h5>
                 </div>
-                {activeItems.map(this.renderItem)}
+                {activeItems.map((item) => {
+                    return <Item key={item.id} item={item}/>
+                })}
             </ul>
         )
     }
@@ -54,4 +31,4 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, {readItems})(ItemList);
+export default connect(mapStateToProps, {readItems, deleteItem})(ItemList);

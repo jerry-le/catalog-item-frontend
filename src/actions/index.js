@@ -6,6 +6,7 @@ export const CREATE_CATALOG = 'CREATE_CATALOG';
 export const SELECT_CATALOG = 'SELECT_CATALOG';
 export const READ_ITEMS = 'READ_ITEMS';
 export const READ_ITEM = 'READ_ITEM';
+export const DELETE_ITEM = 'DELETE_ITEM';
 export const CREATE_ITEM = 'CREATE_ITEM';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
@@ -91,6 +92,17 @@ export function selectCatalog(catalog) {
     return {
         type: SELECT_CATALOG,
         payload: catalog
+    }
+}
+
+export function deleteItem(item, callback) {
+    axios.delete(`${ITEM_URL}/${item.id}`, config)
+        .then(() => callback())
+        .catch(() => callback());
+
+    return {
+        type: DELETE_ITEM,
+        payload: item
     }
 }
 
