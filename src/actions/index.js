@@ -87,10 +87,10 @@ export function createItem(values, resolve, reject) {
     }
 }
 
-export function selectCategory(category) {
+export function selectCatalog(catalog) {
     return {
         type: SELECT_CATALOG,
-        payload: category
+        payload: catalog
     }
 }
 
