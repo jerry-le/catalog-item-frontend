@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {readCatalogsByName} from "../actions";
+import {readCatalogsByName} from "../../actions/index";
 import {connect} from 'react-redux';
 
 class CatalogSearchBar extends Component {

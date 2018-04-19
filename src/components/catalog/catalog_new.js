@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
-import {createCatalog} from '../actions/index';
+import {createCatalog} from '../../actions/index';
 import {SubmissionError} from "redux-form";
 
 class CatalogNew extends Component {

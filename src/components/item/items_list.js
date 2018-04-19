@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {readItems} from "../actions";
+import {readItems} from "../../actions/index";
 import {Link} from 'react-router-dom';
 
 class ItemList extends Component {

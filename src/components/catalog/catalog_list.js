@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {readCatalogs} from "../actions";
-import {selectCategory} from "../actions";
+import {readCatalogs} from "../../actions/index";
+import {selectCategory} from "../../actions/index";
 
 class CatalogList extends Component {
     componentDidMount(){
