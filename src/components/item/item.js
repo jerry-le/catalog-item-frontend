@@ -10,6 +10,19 @@ class Item extends Component {
         });
     }
 
+    renderModifyButtons(item) {
+        if (localStorage.getItem('access_token')) {
+            return (
+                <div>
+                <span className="edit-item">
+                    <Link to={`item/${item.id}`}>Edit</Link>
+                </span>
+                    <span className="edit-item" onClick={() => this.onClickDelete(item)}> Delete</span>
+                </div>
+            )
+        }
+    }
+
     render() {
         const item = this.props.item;
         return (
@@ -26,12 +39,7 @@ class Item extends Component {
                         target="_blank"
                     >{item.description}</a>
                     <div>Posted in <b>{item.created}</b> in <b>{item.catalog}</b></div>
-                    <div>
-                        <span className="edit-item">
-                            <Link to={`item/${item.id}`}>Edit</Link>
-                        </span>
-                        <span className="edit-item" onClick={() => this.onClickDelete(item)}> Delete</span>
-                    </div>
+                    {this.renderModifyButtons(item)}
                 </div>
             </li>
         )

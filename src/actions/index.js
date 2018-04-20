@@ -134,7 +134,10 @@ export async function checkAccessToken() {
     try {
         await axios.get(LOGIN_URL, config);
         userName = localStorage.getItem('userName');
-    } catch (e) {}
+    } catch (e) {
+        // if check access token fail, remove access_token from localStorage
+        localStorage.removeItem('access_token');
+    }
     return {
         type: VERIFY_ACCESS_TOKEN,
         payload: {
