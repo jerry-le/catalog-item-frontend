@@ -5,7 +5,7 @@ import {checkAccessToken, logOut} from "../actions";
 
 class LayOut extends Component {
     componentDidMount() {
-        if (!this.props.user_name) {
+        if (!this.props.userName) {
             this.props.checkAccessToken();
         }
     }
@@ -15,10 +15,10 @@ class LayOut extends Component {
     }
 
     renderRightInfo() {
-        const user_name = this.props.user_name;
-        const user_img = this.props.user_img;
+        const userName = this.props.userName;
+        const userImg = this.props.userImg;
 
-        if (!user_name) {
+        if (!userName) {
             return (
                 <ul className="nav navbar-nav navbar-right">
                     <li>
@@ -46,9 +46,9 @@ class LayOut extends Component {
                     </li>
                     <li>
                         <a onClick={this.onClickLogOut.bind(this)}>
-                            <img className="avatar" src={user_img}/>
+                            <img alt="avatar" className="avatar" src={userImg}/>
                             <span className="glyphicon glyphicon-log-out"/>
-                            &nbsp;Logout ({user_name})
+                            &nbsp;Logout ({userName})
                         </a>
                     </li>
                 </ul>
@@ -79,17 +79,17 @@ class LayOut extends Component {
 }
 
 function mapStateToProps(state) {
-    let user_name = '';
-    let user_img = '';
+    let userName = '';
+    let userImg = '';
     try {
-        user_name = state.user.name;
-        user_img = state.user.image_url;
+        userName = state.user.name;
+        userImg = state.user.image_url;
     } catch (e) {
     }
 
     return {
-        user_name: user_name,
-        user_img: user_img
+        userName: userName,
+        userImg: userImg
     }
 }
 

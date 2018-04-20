@@ -4,10 +4,6 @@ import {connect} from "react-redux";
 import {deleteItem, readCatalogs} from "../../actions";
 
 class Item extends Component {
-    constructor(props){
-        super(props);
-    }
-
     onClickDelete(item) {
         this.props.deleteItem(item, () => {
             this.props.readCatalogs();

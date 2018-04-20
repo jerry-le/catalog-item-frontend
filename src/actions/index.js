@@ -107,16 +107,16 @@ export function deleteItem(item, callback) {
 }
 
 export async function requestLogin(gapiRespone, resolve, reject) {
-    let user_info = {};
+    let userInfo = {};
     try {
         const response = await axios.post(`${LOGIN_URL}`, gapiRespone);
         const access_token = response.data['access_token'];
-        user_info = response.data['user'];
+        userInfo = response.data['user'];
 
         if (access_token) {
             localStorage.setItem('access_token', access_token);
-            localStorage.setItem('user_name', user_info['name']);
-            localStorage.setItem('user_img', user_info['image_url']);
+            localStorage.setItem('user_name', userInfo['name']);
+            localStorage.setItem('user_img', userInfo['image_url']);
         }
         resolve();
     } catch (e) {
@@ -125,20 +125,20 @@ export async function requestLogin(gapiRespone, resolve, reject) {
 
     return {
         type: LOGIN,
-        payload: user_info
+        payload: userInfo
     }
 }
 
 export async function checkAccessToken() {
-    let user_name = '';
+    let userName = '';
     try {
         await axios.get(LOGIN_URL, config);
-        user_name = localStorage.getItem('user_name');
+        userName = localStorage.getItem('userName');
     } catch (e) {}
     return {
         type: VERIFY_ACCESS_TOKEN,
         payload: {
-            name: user_name,
+            name: userName,
             image_url: localStorage.getItem('user_img')
         }
     }
