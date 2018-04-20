@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {deleteItem} from "../../actions";
+import {deleteItem, readCatalogs} from "../../actions";
 
 class Item extends Component {
     constructor(props){
@@ -10,7 +10,7 @@ class Item extends Component {
 
     onClickDelete(item) {
         this.props.deleteItem(item, () => {
-            window.location.reload();
+            this.props.readCatalogs();
         });
     }
 
@@ -42,4 +42,4 @@ class Item extends Component {
     }
 }
 
-export default connect(null, {deleteItem})(Item);
+export default connect(null, {deleteItem, readCatalogs})(Item);
