@@ -12,11 +12,11 @@ export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const VERIFY_ACCESS_TOKEN = 'VERIFY_ACCESS_TOKEN';
 
-const ROOT_URL = `http://localhost:5000/api`;
+const ROOT_URL = `http://localhost:5000`;
 const CATALOGS_URL = `${ROOT_URL}/catalogs`;
-const CATALOG_URL = `${ROOT_URL}/catalog`;
+const CATALOG_URL = `${ROOT_URL}/catalogs`;
 const ITEMS_URL = `${ROOT_URL}/items`;
-const ITEM_URL = `${ROOT_URL}/item`;
+const ITEM_URL = `${ROOT_URL}/items`;
 const LOGIN_URL = `${ROOT_URL}/login`;
 
 const config = {
